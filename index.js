@@ -7,7 +7,7 @@ const swagger = require('./swagger');
 const cors = require('cors')
 
 
-  
+
 connectDB();
 const app = express();
 const port = process.env.PORT || 3000;
@@ -27,16 +27,16 @@ app.use(cors(corsOptions));
 
 // Route to handle file upload
 app.post('/upload', upload.single('avatar'), async (req, res) => {
-    try {
-      const { name, mobile, password } = req.body;
-      const user = new User({ name, mobile, password, avatar: req.file.buffer });
-      await user.save();
-      res.status(201).send('File uploaded successfully');
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
-    }
-  });
+  try {
+    const { name, mobile, password } = req.body;
+    const user = new User({ name, mobile, password, avatar: req.file.buffer });
+    await user.save();
+    res.status(201).send('File uploaded successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 console.log("New Request");
 app.use("/api/user", require("./routes/user"));
 app.use("/api/owner", require("./routes/owner"));
@@ -51,6 +51,6 @@ app.use(swagger);
 app.use(errorHandler);
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });
 
