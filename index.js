@@ -5,9 +5,6 @@ const errorHandler = require('./middleware/errorHandler');
 const User = require('./models/user');
 const swagger = require('./swagger');
 const cors = require('cors')
-
-
-
 connectDB();
 const app = express();
 const port = process.env.PORT || 3000;
